@@ -8,3 +8,12 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<Cell />, div);
 });
+
+it('renders button correctly with mocked data', () => {
+  const mockClass = jest.fn();
+  mockClass.mockReturnValue(1);
+
+  const { getByTestId } = render(<Cell position={1} sendNewMove={mockClass} findMoveByPosition={mockClass} />);
+
+  expect(getByTestId('cell')).toHaveTextContent('1');
+});
