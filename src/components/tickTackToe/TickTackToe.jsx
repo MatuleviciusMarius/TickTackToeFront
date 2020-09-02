@@ -1,18 +1,8 @@
 import React from 'react';
 
-import { Grid, Paper, makeStyles, Button } from '@material-ui/core';
+import { Cell } from '../';
+import { Grid } from '@material-ui/core';
 import { makeAMove } from '../../api/index';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-}));
 
 class TickTackToe extends React.Component {
   constructor(props) {
@@ -24,7 +14,6 @@ class TickTackToe extends React.Component {
       currentMoveSymbol: 'X',
     };
   }
-  classes = useStyles;
 
   findMoveByPosition = (position) => {
     return this.props.moves.map((move) => {
@@ -32,7 +21,7 @@ class TickTackToe extends React.Component {
     });
   };
 
-  async sendNewMove(position) {
+  sendNewMove = async (position) => {
     const move = { position: position, symbol: this.state.currentMoveSymbol };
     const res = await makeAMove(move);
 
@@ -45,82 +34,28 @@ class TickTackToe extends React.Component {
       }
     }
     this.props.updateMoves();
-  }
+  };
 
   render() {
     return this.state.isLoading ? (
-      <div className={this.classes.root}>
+      <div>
         <Grid container spacing={1}>
           <Grid container item xs={12} spacing={3}>
-            <Grid item xs={4}>
-              <Paper className={this.classes.paper}>
-                <Button variant='outlined' onClick={() => this.sendNewMove(1)}>
-                  {this.findMoveByPosition(1) || 'Hello'}
-                </Button>
-              </Paper>
-            </Grid>{' '}
-            <Grid item xs={4}>
-              <Paper className={this.classes.paper}>
-                <Button variant='outlined' onClick={() => this.sendNewMove(2)}>
-                  {this.findMoveByPosition(2)}
-                </Button>
-              </Paper>
-            </Grid>{' '}
-            <Grid item xs={4}>
-              <Paper className={this.classes.paper}>
-                <Button variant='outlined' onClick={() => this.sendNewMove(3)}>
-                  {this.findMoveByPosition(3)}
-                </Button>
-              </Paper>
-            </Grid>
+            <Cell position={1} sendNewMove={this.sendNewMove} findMoveByPosition={this.findMoveByPosition} />
+            <Cell position={2} sendNewMove={this.sendNewMove} findMoveByPosition={this.findMoveByPosition} />
+            <Cell position={3} sendNewMove={this.sendNewMove} findMoveByPosition={this.findMoveByPosition} />
           </Grid>
 
           <Grid container item xs={12} spacing={3}>
-            <Grid item xs={4}>
-              <Paper className={this.classes.paper}>
-                <Button variant='outlined' onClick={() => this.sendNewMove(4)}>
-                  {this.findMoveByPosition(4)}
-                </Button>
-              </Paper>
-            </Grid>{' '}
-            <Grid item xs={4}>
-              <Paper className={this.classes.paper}>
-                <Button variant='outlined' onClick={() => this.sendNewMove(5)}>
-                  {this.findMoveByPosition(5)}
-                </Button>
-              </Paper>
-            </Grid>{' '}
-            <Grid item xs={4}>
-              <Paper className={this.classes.paper}>
-                <Button variant='outlined' onClick={() => this.sendNewMove(6)}>
-                  {this.findMoveByPosition(6)}
-                </Button>
-              </Paper>
-            </Grid>
+            <Cell position={4} sendNewMove={this.sendNewMove} findMoveByPosition={this.findMoveByPosition} />
+            <Cell position={5} sendNewMove={this.sendNewMove} findMoveByPosition={this.findMoveByPosition} />
+            <Cell position={6} sendNewMove={this.sendNewMove} findMoveByPosition={this.findMoveByPosition} />
           </Grid>
 
           <Grid container item xs={12} spacing={3}>
-            <Grid item xs={4}>
-              <Paper className={this.classes.paper}>
-                <Button variant='outlined' onClick={() => this.sendNewMove(7)}>
-                  {this.findMoveByPosition(7)}
-                </Button>
-              </Paper>
-            </Grid>{' '}
-            <Grid item xs={4}>
-              <Paper className={this.classes.paper}>
-                <Button variant='outlined' onClick={() => this.sendNewMove(8)}>
-                  {this.findMoveByPosition(8)}
-                </Button>
-              </Paper>
-            </Grid>{' '}
-            <Grid item xs={4}>
-              <Paper className={this.classes.paper}>
-                <Button variant='outlined' onClick={() => this.sendNewMove(9)}>
-                  {this.findMoveByPosition(9)}
-                </Button>
-              </Paper>
-            </Grid>
+            <Cell position={7} sendNewMove={this.sendNewMove} findMoveByPosition={this.findMoveByPosition} />
+            <Cell position={8} sendNewMove={this.sendNewMove} findMoveByPosition={this.findMoveByPosition} />
+            <Cell position={9} sendNewMove={this.sendNewMove} findMoveByPosition={this.findMoveByPosition} />{' '}
           </Grid>
         </Grid>
       </div>

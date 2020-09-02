@@ -16,7 +16,7 @@ class App extends React.Component {
   updateMoves = async () => {
     this.setState({ ...this.state, isLoading: true });
     let moves = await getAllMoves();
-    moves = moves.data;
+    moves = moves.data.moves;
     this.setState({ ...this.state, moves: moves, isLoading: false });
     const endGame = checkEndGame(moves);
     if (endGame) {
@@ -39,7 +39,7 @@ class App extends React.Component {
 
   async componentDidMount() {
     let moves = await getAllMoves();
-    moves = moves.data;
+    moves = moves.data.moves;
     this.setState({ ...this.state, isLoading: false, moves: moves });
   }
 }
