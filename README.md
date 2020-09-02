@@ -4,5 +4,12 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Build docker image:
+
+docker build -t ticktacktoefront .
+
+### Run docker image:
+
+docker run -it -p 3000:3000 ticktacktoe
+
+### Open browser on port 3000

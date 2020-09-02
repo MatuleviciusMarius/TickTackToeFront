@@ -17,7 +17,7 @@ function Cell({ position, sendNewMove, findMoveByPosition }) {
   return position ? (
     <Grid item xs={4} min-height='100'>
       <Paper className={classes.paper}>
-        <Button variant='outlined' height='100' onClick={() => sendNewMove(position)}>
+        <Button data-testid='cell' variant='outlined' height='100' onClick={() => sendNewMove(position)}>
           {findMoveByPosition(position)}
         </Button>
       </Paper>
